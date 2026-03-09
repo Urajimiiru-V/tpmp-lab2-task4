@@ -1,0 +1,27 @@
+APPLICANTS SELECTION RESULTS (passing score > 225)
+Total selected: 3 applicants
+
+Applicant #1:
+Name: Ivanov Ivan Ivanovich
+Gender: M, Nationality: Russian
+Birth date: 2005-03-15
+Address: 220001, Belarus, Minsk reg., Minsky distr., Minsk city, Lenina st., 10, apt 5
+CT scores: 95, 90, 85
+Passing score: 270
+
+Applicant #2:
+Name: Sidorova Anna Sergeevna
+Gender: F, Nationality: Russian
+Birth date: 2005-01-10
+Address: 220003, Belarus, Vitebsk reg., Vitebsky distr., Vitebsk city, Kirova st., 7, apt 2
+CT scores: 98, 96, 94
+Passing score: 288
+
+Applicant #3:
+Name: Smirnov Alexey Alekseevich
+Gender: M, Nationality: Russian
+Birth date: 2005-06-18
+Address: 220005, Belarus, Grodno reg., Grodnensky distr., Grodno city, Gagarina st., 12, apt 4
+CT scores: 85, 82, 88
+Passing score: 255
+
