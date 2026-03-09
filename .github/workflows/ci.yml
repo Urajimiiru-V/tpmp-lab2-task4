@@ -1,0 +1,60 @@
+name: C Build and Test - Task4
+
+on:
+  push:
+    branches: [ "main", "development" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Create data directory
+      run: mkdir -p data
+      
+    - name: Create test data file
+      run: |
+        echo "Ivanov;Ivan;Ivanovich;M;Russian;2005 3 15;220001;Belarus;Minsk;Minsky;Minsk;Lenina;10;5;95;90;85;270" > data/abiturients.txt
+        echo "Petrov;Petr;Petrovich;M;Belarusian;2004 7 20;220002;Belarus;Gomel;Gomelsky;Gomel;Sovetskaya;15;3;70;65;80;215" >> data/abiturients.txt
+        echo "Sidorova;Anna;Sergeevna;F;Russian;2005 1 10;220003;Belarus;Vitebsk;Vitebsky;Vitebsk;Kirova;7;2;98;96;94;288" >> data/abiturients.txt
+        
+    - name: Display test data
+      run: |
+        echo "Test data:"
+        cat data/abiturients.txt
+        
+    - name: Build with Make
+      run: make
+      
+    - name: Run program
+      run: ./abiturient_program
+      
+    - name: Check output file
+      run: |
+        if [ -f data/result.txt ]; then
+          echo "Output file created"
+          echo ""
+          echo "Results"
+          cat data/result.txt
+          
+          EXPECTED=2
+          ACTUAL=$(grep -c "Applicant #" data/result.txt || true)
+          
+          echo ""
+          echo "Expected: $EXPECTED, Found: $ACTUAL"
+          
+          if [ "$ACTUAL" -eq "$EXPECTED" ]; then
+            echo "Test passed"
+          else
+            echo "Test failed"
+            exit 1
+          fi
+        else
+          echo  "Output file not created"
+          exit 1
+        fi
