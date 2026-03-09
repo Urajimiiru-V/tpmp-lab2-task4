@@ -1,21 +1,16 @@
 CC=gcc
-CFLAGS=-Wall -Wextra -std=c99 -I./src
+CFLAGS=-I./src -Wall
 TARGET=abiturient_program
-SRCDIR=src
-SOURCES=$(wildcard $(SRCDIR)/*.c)
-OBJECTS=$(SOURCES:.c=.o)
+SOURCES=src/main.c src/server.c
+HEADERS=src/interfaces.h
 
-all: $(TARGET)
+all: clean $(TARGET)
 
-$(TARGET): $(OBJECTS)
-	$(CC) $^ -o $@
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+$(TARGET): $(SOURCES) $(HEADERS)
+	$(CC) $(CFLAGS) $(SOURCES) -o $(TARGET)
 
 clean:
-	rm -f $(OBJECTS) $(TARGET)
-	rm -f data/result.txt
+	rm -f $(TARGET) src/*.o
 
 run: $(TARGET)
 	./$(TARGET)
